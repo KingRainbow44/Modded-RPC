@@ -8,7 +8,7 @@ const { filters, getModule } = webpack;
 import status from "@features/status";
 
 const handlers: { [key: string]: (socket: WebSocket, data: any) => void } = {
-    "status": status.changeStatus
+    status: status.changeStatus,
 };
 
 /**
@@ -60,7 +60,7 @@ export async function start(): Promise<void> {
         });
     });
 
-    logger.log("WebSocket hooked successfully. Connect on 'ws://127.0.0.1:6463/rpc?v=1'.")
+    logger.log("WebSocket hooked successfully. Connect on 'ws://127.0.0.1:6463/rpc?v=1'.");
 }
 
 export function stop(): void {

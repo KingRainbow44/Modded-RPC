@@ -3,7 +3,9 @@ import { StatusUpdateMessage, UserSettingsModule, WebSocket } from "@app/types";
 import { rCopy } from "@app/index";
 
 const { filters, getModule } = webpack;
-const userSettings: UserSettingsModule = getModule(filters.byProps("PreloadedUserSettingsActionCreators"))!;
+const userSettings: UserSettingsModule = getModule(
+    filters.byProps("PreloadedUserSettingsActionCreators"),
+)!;
 
 interface ChangeStatusMessage {
     showGame?: boolean;
@@ -17,19 +19,20 @@ interface ChangeStatusMessage {
 }
 
 async function setStatus(status: StatusUpdateMessage): Promise<void> {
-    await userSettings.PreloadedUserSettingsActionCreators
-        .updateAsync("status", original => {
+    await userSettings.PreloadedUserSettingsActionCreators.updateAsync(
+        "status",
+        (original) => {
             rCopy(original, status, true);
-        }, 0);
+        },
+        0,
+    );
 }
 
-async function changeStatus(
-    socket: WebSocket, data: ChangeStatusMessage
-): Promise<void> {
+async function changeStatus(socket: WebSocket, data: ChangeStatusMessage): Promise<void> {
     const status: StatusUpdateMessage = {
         customStatus: {},
         showCurrentGame: {},
-        status: {}
+        status: {},
     };
 
     if (data.emoji) {
@@ -53,5 +56,5 @@ async function changeStatus(
 }
 
 export default {
-    changeStatus
+    changeStatus,
 };

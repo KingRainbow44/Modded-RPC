@@ -2,8 +2,7 @@ export interface Settings {
     port?: number;
 }
 
-export type WebSocketEvents
-    = "message";
+export type WebSocketEvents = "message";
 
 export interface WebSocket {
     close: () => any;
@@ -18,8 +17,8 @@ export interface WebSocket {
 
 export interface UserSettingsModule {
     PreloadedUserSettingsActionCreators: {
-        updateAsync(what: string, fn: (value: any) => void, any: 0): Promise<void>
-    }
+        updateAsync(what: string, fn: (value: any) => void, any: 0): Promise<void>;
+    };
 }
 
 export interface StatusUpdateMessage {
@@ -31,8 +30,8 @@ export interface StatusUpdateMessage {
     };
     showCurrentGame: {
         value?: boolean;
-    }
+    };
     status: {
         value?: "online" | "dnd" | "idle" | "invisible";
-    }
+    };
 }

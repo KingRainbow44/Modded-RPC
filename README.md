@@ -4,5 +4,5 @@ Open a local web socket server to control your Discord client.
 
 # Features
 
-- [ ] Open a local web socket server
-- [ ] Change your status
+-   [ ] Open a local web socket server
+-   [ ] Change your status

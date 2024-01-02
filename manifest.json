@@ -16,5 +16,7 @@
   "type": "replugged-plugin",
   "renderer": "src/index.ts",
   "source": "https://github.com/KingRainbow44/Modded-RPC",
-  "image": ["https://cdn.discordapp.com/attachments/988895088434360399/1197038952268447834/paimon.jpg"]
+  "image": [
+    "https://cdn.discordapp.com/attachments/988895088434360399/1197038952268447834/paimon.jpg"
+  ]
 }
