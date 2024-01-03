@@ -22,7 +22,7 @@ export interface UserSettingsModule {
 }
 
 export interface StatusUpdateMessage {
-    customStatus?: {
+    customStatus: {
         emojiId?: string | "0";
         emojiName?: string | "";
         expiresAtMs?: string | "0";

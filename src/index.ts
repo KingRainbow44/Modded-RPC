@@ -38,9 +38,12 @@ export function rCopy(source: any, target: any, copy = false): any {
 }
 
 // Connect to the local server using 'ws://127.0.0.1:6463/rpc?v=1'.
-export async function start(): Promise<void> {
+export function start(): void {
     const module = getModule(filters.bySource("RPCServer:WSS"));
-    if (!module) return logger.error("RPCServer:WSS module not found!");
+    if (!module) {
+        logger.error("RPCServer:WSS module not found!");
+        return;
+    }
 
     inject.instead(module, "handleConnection" as never, (args, orig) => {
         const socket = args[0] as WebSocket;
@@ -50,9 +53,9 @@ export async function start(): Promise<void> {
         socket.on("message", (data: string) => {
             try {
                 const message: any = JSON.parse(data);
-                if (!message["cmd"]) return;
+                if (!message.cmd) return;
 
-                const handler = handlers[message["cmd"]];
+                const handler = handlers[message.cmd];
                 if (handler) handler(socket, message);
             } catch (error) {
                 logger.error("Failed to parse JSON message.", error);

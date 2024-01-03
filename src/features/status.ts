@@ -28,7 +28,7 @@ async function setStatus(status: StatusUpdateMessage): Promise<void> {
     );
 }
 
-async function changeStatus(socket: WebSocket, data: ChangeStatusMessage): Promise<void> {
+async function changeStatus(_: WebSocket, data: ChangeStatusMessage): Promise<void> {
     const status: StatusUpdateMessage = {
         customStatus: {},
         showCurrentGame: {},
@@ -36,20 +36,20 @@ async function changeStatus(socket: WebSocket, data: ChangeStatusMessage): Promi
     };
 
     if (data.emoji) {
-        status.customStatus!.emojiId = data.emoji.id;
-        status.customStatus!.emojiName = data.emoji.name;
+        status.customStatus.emojiId = data.emoji.id;
+        status.customStatus.emojiName = data.emoji.name;
     }
     if (data.expiresTime) {
-        status.customStatus!.expiresAtMs = (Date.now() + data.expiresTime).toString();
+        status.customStatus.expiresAtMs = (Date.now() + data.expiresTime).toString();
     }
     if (data.message) {
-        status.customStatus!.text = data.message;
+        status.customStatus.text = data.message;
     }
     if (data.status) {
-        status.status!.value = data.status;
+        status.status.value = data.status;
     }
     if (data.showGame) {
-        status.showCurrentGame!.value = data.showGame;
+        status.showCurrentGame.value = data.showGame;
     }
 
     await setStatus(status);
