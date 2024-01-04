@@ -47,7 +47,7 @@ export function start(): void {
 
     inject.instead(module, "handleConnection" as never, (args, orig) => {
         const socket = args[0] as WebSocket;
-        const url = socket.upgradeReq().url;
+        const { url } = socket.upgradeReq();
         if (url != "/rpc?v=1") return orig(...args);
 
         socket.on("message", (data: string) => {
@@ -56,7 +56,7 @@ export function start(): void {
                 if (!message.cmd) return;
 
                 const handler = handlers[message.cmd];
-                if (handler) handler(socket, message);
+                if (handler != undefined) handler(socket, message);
             } catch (error) {
                 logger.error("Failed to parse JSON message.", error);
             }

@@ -33,7 +33,6 @@ rules:
     no-undef: off
     no-unused-vars: off
     "@typescript-eslint/no-unused-vars": error
-    "@typescript-eslint/no-explicit-any": off
 
 overrides:
     - files: "**/*.{ts,tsx}"
@@ -48,6 +47,8 @@ overrides:
 
     - files: "**/src/**/*.{ts,tsx}"
       extends: eslint-config-dmitmel/rules/typescript/with-type-checking
+      rules:
+          "@typescript-eslint/no-explicit-any": off
 
     - files: "**/*.d.ts"
       rules:
