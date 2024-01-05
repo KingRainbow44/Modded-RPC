@@ -55,8 +55,7 @@ export function start(): void {
                 const message: any = JSON.parse(data);
                 if (!message.cmd) return;
 
-                const handler = handlers[message.cmd];
-                if (handler != undefined) handler(socket, message);
+                handlers[message.cmd](socket, message);
             } catch (error) {
                 logger.error("Failed to parse JSON message.", error);
             }
