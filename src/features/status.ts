@@ -18,6 +18,11 @@ interface ChangeStatusMessage {
     message?: string;
 }
 
+/**
+ * Internal method to update the user status.
+ *
+ * @param status The status object.
+ */
 async function setStatus(status: StatusUpdateMessage): Promise<void> {
     await userSettings.PreloadedUserSettingsActionCreators.updateAsync(
         "status",
@@ -28,6 +33,12 @@ async function setStatus(status: StatusUpdateMessage): Promise<void> {
     );
 }
 
+/**
+ * Event handler for when the websocket requests to change the user's status.
+ *
+ * @param _ The websocket connection.
+ * @param data The data to change the status.
+ */
 async function changeStatus(_: WebSocket, data: ChangeStatusMessage): Promise<void> {
     const status: StatusUpdateMessage = {
         customStatus: {},
@@ -52,6 +63,7 @@ async function changeStatus(_: WebSocket, data: ChangeStatusMessage): Promise<vo
         status.showCurrentGame.value = data.showGame;
     }
 
+    console.log(status);
     await setStatus(status);
 }
 

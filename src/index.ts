@@ -50,6 +50,7 @@ export function start(): void {
         const { url } = socket.upgradeReq();
         if (url != "/rpc?v=1") return orig(...args);
 
+        logger.log(`WebSocket connection from ${socket.upgradeReq().url}`);
         socket.on("message", (data: string) => {
             try {
                 const message: any = JSON.parse(data);
