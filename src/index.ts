@@ -39,7 +39,7 @@ export function rCopy(source: any, target: any, copy = false): any {
 
 // Connect to the local server using 'ws://127.0.0.1:6463/rpc?v=1'.
 export function start(): void {
-    const module = getModule(filters.bySource("RPCServer:WSS"));
+    const module = getModule(filters.bySource("Starting on "));
     if (!module) {
         logger.error("RPCServer:WSS module not found!");
         return;
